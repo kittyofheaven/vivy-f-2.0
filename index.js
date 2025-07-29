@@ -36,7 +36,7 @@ client.on("messageCreate", async (message) => {
   // Kirim chat ke webhook n8n
   try {
     await axios.post(
-      "http://n8n:5678/webhook/322c6966-638e-428c-9263-8eb313c5b857/chat",
+      "http://n8n-aws.netbird.kittyofheaven:5678/webhook/322c6966-638e-428c-9263-8eb313c5b857/chat",
       {
         user: message.author.username,
         userId: message.author.id,
