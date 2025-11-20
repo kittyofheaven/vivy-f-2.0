@@ -33,10 +33,15 @@ client.on("messageCreate", async (message) => {
   if (!isDM && !isAllowedChannel) return;
   if (isDM && !config.allowDirectMessage) return;
 
-  // Kirim chat ke webhook n8n
   try {
+    const webhookUrl = process.env.N8N_WEBHOOK_URL;
+    if (!webhookUrl) {
+      console.error("N8N_WEBHOOK_URL is not set in .env");
+      return;
+    }
+    // Kirim chat ke webhook n8n
     await axios.post(
-      "http://n8n-aws.netbird.kittyofheaven:5678/webhook/322c6966-638e-428c-9263-8eb313c5b857/chat",
+      webhookUrl,
       {
         user: message.author.username,
         userId: message.author.id,
